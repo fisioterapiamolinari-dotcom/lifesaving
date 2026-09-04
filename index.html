@@ -1,0 +1,327 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Italia · European Youth Championships 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sea:#0B4F5A;
+    --surf:#127D8E;
+    --sand:#E4D5B7;
+    --foam:#EDF2F1;
+    --card:#FFFFFF;
+    --green:#2E7D4F;
+    --red:#C0392B;
+    --ink:#12262B;
+    --muted:#5F767C;
+    --line:#D7E0DF;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    background:var(--foam);
+    color:var(--ink);
+    font-family:"Barlow",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:16px;
+    line-height:1.45;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:0 14px 64px}
+
+  header.top{
+    background:var(--sea);
+    color:#fff;
+    padding:18px 0 14px;
+    margin-bottom:18px;
+  }
+  header.top .wrap{padding-bottom:0}
+  .kicker{font-family:"Barlow Condensed",sans-serif;letter-spacing:.04em;font-size:15px;color:var(--sand);margin:0}
+  h1{
+    font-family:"Barlow Condensed",sans-serif;
+    font-weight:700;
+    font-size:clamp(30px,8vw,44px);
+    line-height:1;
+    margin:2px 0 6px;
+  }
+  .sub{margin:0;color:#B8D3D6;font-size:14px}
+
+  .controls{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 0}
+  .chip{
+    font-family:"Barlow Condensed",sans-serif;font-size:16px;
+    background:transparent;color:#CDE3E5;border:1px solid #3B7480;
+    border-radius:999px;padding:5px 13px;cursor:pointer;
+  }
+  .chip[aria-pressed="true"]{background:var(--sand);border-color:var(--sand);color:var(--sea);font-weight:600}
+  .chip:focus-visible,input:focus-visible,button:focus-visible{outline:3px solid #F2B705;outline-offset:2px}
+
+  .next{
+    background:var(--card);border-left:6px solid var(--green);
+    border-radius:4px;padding:14px 16px;margin-bottom:22px;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .next .lab{font-family:"Barlow Condensed",sans-serif;color:var(--muted);font-size:16px;margin:0}
+  .next .ev{font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:600;margin:0;line-height:1.1;color:var(--sea)}
+  .next .who{margin:6px 0 0;font-size:15px;color:var(--muted)}
+
+  .ev-card{
+    background:var(--card);border-radius:4px;margin-bottom:12px;
+    border:1px solid var(--line);overflow:hidden;
+  }
+  .ev-head{display:flex;gap:12px;align-items:flex-start;padding:12px 14px}
+  .time-box{flex:0 0 84px}
+  .time-box input{
+    width:100%;font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:600;
+    color:var(--sea);background:var(--foam);border:1px solid var(--line);
+    border-radius:3px;padding:4px 6px;text-align:center;
+  }
+  .time-box input::placeholder{color:#9BAFB3}
+  .time-box .tl{display:block;font-size:12px;color:var(--muted);text-align:center;margin-top:3px}
+  .ev-title{flex:1;min-width:0}
+  .ev-title h2{
+    font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:22px;
+    margin:0;line-height:1.15;color:var(--sea);
+  }
+  .meta{font-size:13px;color:var(--muted);margin:2px 0 0}
+  .badge{
+    display:inline-block;font-family:"Barlow Condensed",sans-serif;font-size:14px;
+    padding:1px 8px;border-radius:3px;margin-right:6px;
+  }
+  .b-f{background:#F3E2E5;color:#8E2D45}
+  .b-m{background:#DDEBF1;color:#17566B}
+  .b-x{background:#E6E7DB;color:#5B6238}
+  .b-rel{background:var(--sand);color:#6B5426}
+
+  ul.ath{list-style:none;margin:0;padding:0;border-top:1px dashed var(--line)}
+  ul.ath li{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid #F0F4F3}
+  ul.ath li:last-child{border-bottom:0}
+  .bib{
+    flex:0 0 34px;height:34px;border-radius:50%;background:var(--surf);color:#fff;
+    font-family:"Barlow Condensed",sans-serif;font-weight:600;font-size:16px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .bib.none{background:#B6C6C8}
+  .nm{flex:1;min-width:0}
+  .nm b{font-weight:600;font-size:16px}
+  .nm span{display:block;font-size:13px;color:var(--muted)}
+  .tick{
+    flex:0 0 auto;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    background:#fff;color:#C2D0D0;font-size:19px;line-height:1;cursor:pointer;
+  }
+  .tick[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+  li.done .nm b{color:var(--muted);text-decoration:line-through}
+
+  .foot{font-size:13px;color:var(--muted);margin-top:26px;border-top:1px solid var(--line);padding-top:12px}
+  .foot button{
+    font-family:"Barlow Condensed",sans-serif;font-size:15px;background:#fff;
+    border:1px solid var(--line);color:var(--red);border-radius:3px;padding:5px 12px;cursor:pointer;margin-top:8px;
+  }
+  .empty{background:#fff;border:1px dashed var(--line);border-radius:4px;padding:22px 16px;text-align:center;color:var(--muted)}
+  @media (prefers-reduced-motion:no-preference){
+    .tick{transition:background .15s ease,color .15s ease}
+  }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <p class="kicker">European Youth Championships 2026 · Sabato 4 settembre</p>
+    <h1>Squadra Italia</h1>
+    <p class="sub">12 atleti · 11 gare · orari da confermare sul programma ufficiale</p>
+    <div class="controls" id="filters">
+      <button class="chip" data-f="all" aria-pressed="true">Tutte</button>
+      <button class="chip" data-f="F" aria-pressed="false">Ragazze</button>
+      <button class="chip" data-f="M" aria-pressed="false">Ragazzi</button>
+      <button class="chip" data-f="rel" aria-pressed="false">Staffette</button>
+      <button class="chip" data-f="ath" aria-pressed="false">Per atleta</button>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="next" id="next"></div>
+  <div id="list"></div>
+  <div class="foot">
+    <p>Gli orari non sono presenti nei fogli di gara caricati: inseriscili tu nel campo a sinistra di ogni gara e restano salvati. Tocca il cerchio a destra di un atleta quando è stato chiamato al via.</p>
+    <p>Corsie e batterie del Beach Sprint sono quelle del Meet Program. Per Surf Swim, Board Race e staffette il numero indica la posizione nella start list, non una corsia.</p>
+    <button id="reset">Cancella tutto</button>
+  </div>
+</div>
+
+<script>
+const EVENTS = [
+  {n:1, t:"400 m Surf Swim", cat:"F", fase:"Serie unica", rel:false, a:[
+    {nm:"Giulia De Monte", e:17, b:52, p:"N. 5 in start list"},
+    {nm:"Cristina Floris", e:15, b:50, p:"N. 6 in start list"}]},
+  {n:2, t:"400 m Surf Swim", cat:"M", fase:"Serie unica", rel:false, a:[
+    {nm:"Alessio Petracca", e:18, b:60, p:"N. 8 in start list"},
+    {nm:"Matteo Pizzorno", e:16, b:56, p:"N. 10 in start list"}]},
+  {n:3, t:"400 m Board Race", cat:"F", fase:"Serie unica", rel:false, a:[
+    {nm:"Cristina Floris", e:15, b:50, p:"N. 2 in start list"},
+    {nm:"Glenda Gheltrito", e:15, b:54, p:"N. 4 in start list"}]},
+  {n:4, t:"400 m Board Race", cat:"M", fase:"Serie unica", rel:false, a:[
+    {nm:"David Astefani", e:17, b:59, p:"N. 1 in start list"},
+    {nm:"Matteo Pizzorno", e:16, b:56, p:"N. 14 in start list"}]},
+  {n:5, t:"90 m Beach Sprint", cat:"F", fase:"Batterie", rel:false, a:[
+    {nm:"Violante Gera", e:15, b:51, p:"Batteria 1 · Corsia 3"},
+    {nm:"Gaja Montin", e:18, b:53, p:"Batteria 2 · Corsia 4"}]},
+  {n:6, t:"90 m Beach Sprint", cat:"M", fase:"Batterie", rel:false, a:[
+    {nm:"Valerio Ierardi", e:18, b:57, p:"Batteria 1 · Corsia 5"},
+    {nm:"Luigi Guarriello", e:18, b:61, p:"Batteria 2 · Corsia 5"}]},
+  {n:13, t:"4×100 m Rescue Tube Rescue", cat:"F", fase:"Staffetta · finale", rel:true, pos:"ITA A · n. 4 in start list", a:[
+    {nm:"Giulia De Monte", e:17, b:52, p:"1ª frazione"},
+    {nm:"Irene Fulgori", e:18, b:55, p:"2ª frazione"},
+    {nm:"Violante Gera", e:15, b:51, p:"3ª frazione"},
+    {nm:"Gaja Montin", e:18, b:53, p:"4ª frazione"}]},
+  {n:14, t:"4×100 m Rescue Tube Rescue", cat:"M", fase:"Staffetta · finale", rel:true, pos:"ITA A · n. 4 in start list", a:[
+    {nm:"David Astefani", e:17, b:59, p:"1ª frazione"},
+    {nm:"Alessio Petracca", e:18, b:60, p:"2ª frazione"},
+    {nm:"Valerio Ierardi", e:18, b:57, p:"3ª frazione"},
+    {nm:"Luigi Guarriello", e:18, b:61, p:"4ª frazione"}]},
+  {n:17, t:"4×250 m Beach Sprint Relay", cat:"F", fase:"Staffetta · finale", rel:true, pos:"ITA A · Corsia 2", a:[
+    {nm:"Violante Gera", e:15, b:51, p:"1ª frazione"},
+    {nm:"Cristina Floris", e:15, b:50, p:"2ª frazione"},
+    {nm:"Irene Fulgori", e:18, b:55, p:"3ª frazione"},
+    {nm:"Gaja Montin", e:18, b:53, p:"4ª frazione"}]},
+  {n:18, t:"4×250 m Beach Sprint Relay", cat:"M", fase:"Staffetta · finale", rel:true, pos:"ITA A · Corsia 6", a:[
+    {nm:"Luigi Guarriello", e:18, b:61, p:"1ª frazione"},
+    {nm:"David Astefani", e:17, b:59, p:"2ª frazione"},
+    {nm:"Alessio Petracca", e:18, b:60, p:"3ª frazione"},
+    {nm:"Valerio Ierardi", e:18, b:57, p:"4ª frazione"}]},
+  {n:21, t:"4×250 m Mixed Ocean Relay", cat:"X", fase:"Staffetta mista · finale", rel:true, pos:"ITA A · n. 4 in start list", a:[
+    {nm:"Cristina Floris", e:15, b:50, p:"1ª frazione"},
+    {nm:"Violante Gera", e:15, b:51, p:"2ª frazione"},
+    {nm:"Leonardo Candela", e:18, b:58, p:"3ª frazione"},
+    {nm:"Alessio Petracca", e:18, b:60, p:"4ª frazione"}]}
+];
+
+const KEY = "eyc2026-ita-v1";
+let state = {times:{}, done:{}};
+let filter = "all";
+
+async function load(){
+  try{
+    const r = await window.storage.get(KEY);
+    if(r && r.value) state = JSON.parse(r.value);
+  }catch(e){ /* prima apertura o storage non disponibile */ }
+  render();
+}
+async function save(){
+  try{ await window.storage.set(KEY, JSON.stringify(state)); }catch(e){}
+}
+
+const badge = ev => ev.cat==="F" ? '<span class="badge b-f">Ragazze</span>'
+  : ev.cat==="M" ? '<span class="badge b-m">Ragazzi</span>'
+  : '<span class="badge b-x">Mista</span>';
+
+function visible(){
+  if(filter==="rel") return EVENTS.filter(e=>e.rel);
+  if(filter==="F"||filter==="M") return EVENTS.filter(e=>e.cat===filter||e.cat==="X");
+  return EVENTS.slice();
+}
+function ordered(list){
+  return list.slice().sort((a,b)=>{
+    const ta = state.times[a.n]||"", tb = state.times[b.n]||"";
+    if(ta && tb) return ta.localeCompare(tb) || a.n-b.n;
+    if(ta) return -1;
+    if(tb) return 1;
+    return a.n-b.n;
+  });
+}
+
+function renderNext(){
+  const box = document.getElementById("next");
+  const now = new Date().toTimeString().slice(0,5);
+  const timed = EVENTS.filter(e=>state.times[e.n]).sort((a,b)=>state.times[a.n].localeCompare(state.times[b.n]));
+  const nx = timed.find(e=>state.times[e.n] >= now) || null;
+  if(!nx){
+    box.innerHTML = '<p class="lab">Prossima gara</p><p class="ev">Inserisci gli orari</p>'+
+      '<p class="who">Scrivi l\'orario di partenza accanto a ogni gara e qui comparirà la prossima chiamata.</p>';
+    return;
+  }
+  box.innerHTML = '<p class="lab">Prossima gara · '+state.times[nx.n]+'</p>'+
+    '<p class="ev">'+nx.t+' — '+(nx.cat==="F"?"ragazze":nx.cat==="M"?"ragazzi":"mista")+'</p>'+
+    '<p class="who">'+nx.a.map(a=>a.nm).join(" · ")+(nx.pos? " — "+nx.pos : "")+'</p>';
+}
+
+function renderEvents(){
+  const list = document.getElementById("list");
+  const evs = ordered(visible());
+  list.innerHTML = evs.map(ev=>{
+    const rows = ev.a.map((a,i)=>{
+      const k = ev.n+"|"+a.nm;
+      const on = !!state.done[k];
+      return '<li class="'+(on?"done":"")+'">'+
+        '<div class="bib '+(a.b?"":"none")+'">'+(a.b||"—")+'</div>'+
+        '<div class="nm"><b>'+a.nm+'</b><span>'+a.e+' anni · '+a.p+'</span></div>'+
+        '<button class="tick" data-k="'+k+'" aria-pressed="'+on+'" aria-label="Segna '+a.nm+' come chiamato">✓</button>'+
+      '</li>';
+    }).join("");
+    return '<article class="ev-card">'+
+      '<div class="ev-head">'+
+        '<div class="time-box"><input type="time" value="'+(state.times[ev.n]||"")+'" data-ev="'+ev.n+'" aria-label="Orario gara '+ev.n+'"><span class="tl">Gara '+ev.n+'</span></div>'+
+        '<div class="ev-title"><h2>'+ev.t+'</h2><p class="meta">'+badge(ev)+(ev.rel?'<span class="badge b-rel">Staffetta</span>':'')+ev.fase+(ev.pos? ' · '+ev.pos : '')+'</p></div>'+
+      '</div>'+
+      '<ul class="ath">'+rows+'</ul>'+
+    '</article>';
+  }).join("");
+}
+
+function renderAthletes(){
+  const map = {};
+  EVENTS.forEach(ev=>ev.a.forEach(a=>{
+    (map[a.nm] = map[a.nm] || {e:a.e, b:a.b, g:[]}).g.push({ev, p:a.p});
+  }));
+  const names = Object.keys(map).sort((x,y)=>map[y].g.length-map[x].g.length || x.localeCompare(y));
+  document.getElementById("list").innerHTML = names.map(nm=>{
+    const A = map[nm];
+    const rows = A.g.sort((p,q)=>{
+      const ta=state.times[p.ev.n]||"", tb=state.times[q.ev.n]||"";
+      if(ta&&tb) return ta.localeCompare(tb); if(ta) return -1; if(tb) return 1; return p.ev.n-q.ev.n;
+    }).map(g=>{
+      const k = g.ev.n+"|"+nm, on = !!state.done[k];
+      return '<li class="'+(on?"done":"")+'">'+
+        '<div class="bib '+(state.times[g.ev.n]?"":"none")+'" style="font-size:14px">'+(state.times[g.ev.n]||"--")+'</div>'+
+        '<div class="nm"><b>'+g.ev.t+'</b><span>Gara '+g.ev.n+' · '+g.p+(g.ev.pos? ' · '+g.ev.pos:'')+'</span></div>'+
+        '<button class="tick" data-k="'+k+'" aria-pressed="'+on+'" aria-label="Segna come fatto">✓</button>'+
+      '</li>';
+    }).join("");
+    return '<article class="ev-card">'+
+      '<div class="ev-head">'+
+        '<div class="time-box"><div class="bib" style="margin:0 auto">'+(A.b||"—")+'</div><span class="tl">pettorina</span></div>'+
+        '<div class="ev-title"><h2>'+nm+'</h2><p class="meta">'+A.e+' anni · '+A.g.length+' gare in programma</p></div>'+
+      '</div><ul class="ath">'+rows+'</ul></article>';
+  }).join("");
+}
+
+function render(){
+  renderNext();
+  if(filter==="ath") renderAthletes(); else renderEvents();
+}
+
+document.getElementById("filters").addEventListener("click", e=>{
+  const b = e.target.closest(".chip"); if(!b) return;
+  filter = b.dataset.f;
+  document.querySelectorAll("#filters .chip").forEach(c=>c.setAttribute("aria-pressed", c===b));
+  render();
+});
+document.getElementById("list").addEventListener("input", e=>{
+  if(e.target.matches("input[type=time]")){
+    const n = e.target.dataset.ev;
+    if(e.target.value) state.times[n] = e.target.value; else delete state.times[n];
+    save(); renderNext();
+  }
+});
+document.getElementById("list").addEventListener("click", e=>{
+  const b = e.target.closest(".tick"); if(!b) return;
+  const k = b.dataset.k;
+  if(state.done[k]) delete state.done[k]; else state.done[k] = true;
+  save(); render();
+});
+document.getElementById("reset").addEventListener("click", async ()=>{
+  state = {times:{}, done:{}};
+  try{ await window.storage.delete(KEY); }catch(e){}
+  render();
+});
+
+load();
+</script>
